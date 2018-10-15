@@ -35,13 +35,13 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/cf974b4a/ArbreAbstrait.o \
-	${OBJECTDIR}/_ext/cf974b4a/Interpreteur.o \
-	${OBJECTDIR}/_ext/cf974b4a/Lecteur.o \
-	${OBJECTDIR}/_ext/cf974b4a/Symbole.o \
-	${OBJECTDIR}/_ext/cf974b4a/SymboleValue.o \
-	${OBJECTDIR}/_ext/cf974b4a/TableSymboles.o \
-	${OBJECTDIR}/_ext/cf974b4a/main.o
+	${OBJECTDIR}/ArbreAbstrait.o \
+	${OBJECTDIR}/Interpreteur.o \
+	${OBJECTDIR}/Lecteur.o \
+	${OBJECTDIR}/Symbole.o \
+	${OBJECTDIR}/SymboleValue.o \
+	${OBJECTDIR}/TableSymboles.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -68,40 +68,40 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projinterpret: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projinterpret ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/cf974b4a/ArbreAbstrait.o: ../source/ArbreAbstrait.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf974b4a
+${OBJECTDIR}/ArbreAbstrait.o: ArbreAbstrait.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf974b4a/ArbreAbstrait.o ../source/ArbreAbstrait.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ArbreAbstrait.o ArbreAbstrait.cpp
 
-${OBJECTDIR}/_ext/cf974b4a/Interpreteur.o: ../source/Interpreteur.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf974b4a
+${OBJECTDIR}/Interpreteur.o: Interpreteur.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf974b4a/Interpreteur.o ../source/Interpreteur.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Interpreteur.o Interpreteur.cpp
 
-${OBJECTDIR}/_ext/cf974b4a/Lecteur.o: ../source/Lecteur.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf974b4a
+${OBJECTDIR}/Lecteur.o: Lecteur.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf974b4a/Lecteur.o ../source/Lecteur.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Lecteur.o Lecteur.cpp
 
-${OBJECTDIR}/_ext/cf974b4a/Symbole.o: ../source/Symbole.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf974b4a
+${OBJECTDIR}/Symbole.o: Symbole.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf974b4a/Symbole.o ../source/Symbole.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Symbole.o Symbole.cpp
 
-${OBJECTDIR}/_ext/cf974b4a/SymboleValue.o: ../source/SymboleValue.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf974b4a
+${OBJECTDIR}/SymboleValue.o: SymboleValue.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf974b4a/SymboleValue.o ../source/SymboleValue.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SymboleValue.o SymboleValue.cpp
 
-${OBJECTDIR}/_ext/cf974b4a/TableSymboles.o: ../source/TableSymboles.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf974b4a
+${OBJECTDIR}/TableSymboles.o: TableSymboles.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf974b4a/TableSymboles.o ../source/TableSymboles.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TableSymboles.o TableSymboles.cpp
 
-${OBJECTDIR}/_ext/cf974b4a/main.o: ../source/main.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf974b4a
+${OBJECTDIR}/main.o: main.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf974b4a/main.o ../source/main.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

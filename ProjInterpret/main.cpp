@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
   try {
     Interpreteur interpreteur(fichier);
     interpreteur.analyse();
-    // Si pas d'exception levée, l'analyse syntaxique a réussi
+    // Si pas d'exception levée, l'analyse syntaxique a réussi test LFezopjqergfdp
     cout << endl << "================ Syntaxe Correcte" << endl;
     // On affiche le contenu de la table des symboles avant d'exécuter le programme
     cout << endl << "================ Table des symboles avant exécution : " << interpreteur.getTable();
