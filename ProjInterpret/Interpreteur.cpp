@@ -136,4 +136,37 @@ Noeud* Interpreteur::instSi() {
   testerEtAvancer("finsi");
   return new NoeudInstSi(condition, sequence); // Et on renvoie un noeud Instruction Si
 }
+/////////////////////////
+//////////////////////////
+
+
+Noeud* Interpreteur::instSiRiche() {    
+    // <instSiRiche> ::= si(<expression>) <seqInst> {sinonsi (<expression>) <seqInst> } [sinon <seqInst>] finsi
+    testerEtAvancer("si");
+    testerEtAvancer("(");
+    Noeud* conditionSi = expression(); // On mémorise la condition
+    testerEtAvancer(")");
+    Noeud* sequenceSi = seqInst();
+    testerEtAvancer("sinonsi"); // cas de plusieurs sinonsi pas encore géré
+    testerEtAvancer("(");
+    Noeud* conditionSinonSi = expression();
+    testerEtAvancer(")");
+    Noeud* sequenceSinonSi = seqInst();
+    testerEtAvancer("sinon");
+    Noeud* sequenceSinon = seqInst();
+    testerEtAvancer("finsi");
+    return new NoeudInstSiRiche(conditionSi, sequenceSi,/*vecteur*/conditionSinonSi, /*vecteur*/sequenceSinonSi, sequenceSinon);
+    
+}
+
+Noeud* Interpreteur::instRepeter() {
+    // <instRepeter> ::= repeter <seqInst> jusqua ( <expression> )
+    testerEtAvancer("repeter");
+    Noeud* sequence = sequence();
+    testerEtAvancer("jusqa");
+    testerEtAvancer("(");
+    Noeud* finBoucle = expression();
+    testerEtAvancer(")");
+    return new NoeudInstRepeter(sequence, finBoucle);
+}
 
