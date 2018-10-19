@@ -4,13 +4,13 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>../source/ArbreAbstrait.h</itemPath>
-      <itemPath>../source/Exceptions.h</itemPath>
-      <itemPath>../source/Interpreteur.h</itemPath>
-      <itemPath>../source/Lecteur.h</itemPath>
-      <itemPath>../source/Symbole.h</itemPath>
-      <itemPath>../source/SymboleValue.h</itemPath>
-      <itemPath>../source/TableSymboles.h</itemPath>
+      <itemPath>ArbreAbstrait.h</itemPath>
+      <itemPath>Exceptions.h</itemPath>
+      <itemPath>Interpreteur.h</itemPath>
+      <itemPath>Lecteur.h</itemPath>
+      <itemPath>Symbole.h</itemPath>
+      <itemPath>SymboleValue.h</itemPath>
+      <itemPath>TableSymboles.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -19,13 +19,13 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>../source/ArbreAbstrait.cpp</itemPath>
-      <itemPath>../source/Interpreteur.cpp</itemPath>
-      <itemPath>../source/Lecteur.cpp</itemPath>
-      <itemPath>../source/Symbole.cpp</itemPath>
-      <itemPath>../source/SymboleValue.cpp</itemPath>
-      <itemPath>../source/TableSymboles.cpp</itemPath>
-      <itemPath>../source/main.cpp</itemPath>
+      <itemPath>ArbreAbstrait.cpp</itemPath>
+      <itemPath>Interpreteur.cpp</itemPath>
+      <itemPath>Lecteur.cpp</itemPath>
+      <itemPath>Symbole.cpp</itemPath>
+      <itemPath>SymboleValue.cpp</itemPath>
+      <itemPath>TableSymboles.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -52,33 +52,33 @@
           <standard>8</standard>
         </ccTool>
       </compileType>
-      <item path="../source/ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
+      <item path="ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Exceptions.h" ex="false" tool="3" flavor2="0">
+      <item path="Exceptions.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Interpreteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Interpreteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/Interpreteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Interpreteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Lecteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Lecteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/Lecteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Lecteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Symbole.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Symbole.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/Symbole.h" ex="false" tool="3" flavor2="0">
+      <item path="Symbole.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/SymboleValue.cpp" ex="false" tool="1" flavor2="0">
+      <item path="SymboleValue.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/SymboleValue.h" ex="false" tool="3" flavor2="0">
+      <item path="SymboleValue.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/TableSymboles.cpp" ex="false" tool="1" flavor2="0">
+      <item path="TableSymboles.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/TableSymboles.h" ex="false" tool="3" flavor2="0">
+      <item path="TableSymboles.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -102,33 +102,33 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="../source/ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
+      <item path="ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Exceptions.h" ex="false" tool="3" flavor2="0">
+      <item path="Exceptions.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Interpreteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Interpreteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/Interpreteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Interpreteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Lecteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Lecteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/Lecteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Lecteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/Symbole.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Symbole.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/Symbole.h" ex="false" tool="3" flavor2="0">
+      <item path="Symbole.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/SymboleValue.cpp" ex="false" tool="1" flavor2="0">
+      <item path="SymboleValue.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/SymboleValue.h" ex="false" tool="3" flavor2="0">
+      <item path="SymboleValue.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/TableSymboles.cpp" ex="false" tool="1" flavor2="0">
+      <item path="TableSymboles.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../source/TableSymboles.h" ex="false" tool="3" flavor2="0">
+      <item path="TableSymboles.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../source/main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>
