@@ -137,3 +137,14 @@ Noeud* Interpreteur::instSi() {
   return new NoeudInstSi(condition, sequence); // Et on renvoie un noeud Instruction Si
 }
 
+Noeud* Interpreteur::instTantQue(){
+// <instTantQue> ::= tantque ( <expression> ) <seqInst> fintantque
+    testerEtAvancer("tantque");
+    testerEtAvancer("(");
+    Noeud* expression = expression();
+    testerEtAvancer(")");
+    Noeud* sequence = seqInst();
+    testerEtAvancer("fintantque");
+    return new NoeudInstTantQue(expression,sequence);
+}
+

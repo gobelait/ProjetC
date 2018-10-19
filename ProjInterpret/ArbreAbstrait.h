@@ -18,7 +18,7 @@ class Noeud {
 // Remarque : la classe ne contient aucun constructeur
   public:
     virtual int  executer() =0 ; // Méthode pure (non implémentée) qui rend la classe abstraite
-    virtual void ajoute(Noeud* instruction) { throw OperationInterditeException(); }
+    virtual void ajoute(Noeud* instruction);
     virtual ~Noeud() {} // Présence d'un destructeur virtuel conseillée dans les classes abstraites
 };
 
@@ -79,6 +79,18 @@ class NoeudInstSi : public Noeud {
   private:
     Noeud*  m_condition;
     Noeud*  m_sequence;
+};
+
+class NoeudInstTantQue : public Noeud{
+//Classe pour représenter un noeud "tant que"
+    
+public:
+    NoeudInstTantQue(Noeud* expression, Noeud* sequence); //Construit un "tant que" avec son expression et sa séquence d'instruction
+    ~NoeudInstTantQue(){}; // A cause du destructeur virtuel de la classe Noeud
+    int executer(); // Exécute l'instruction si : si condition vraie on exécute la séquence
+private:
+    Noeud* m_expression;
+    Noeud* m_sequence;
 };
 
 #endif /* ARBREABSTRAIT_H */
