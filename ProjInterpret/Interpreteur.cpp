@@ -71,9 +71,18 @@ Noeud* Interpreteur::inst() {
   }
   else if (m_lecteur.getSymbole() == "si")
     return instSi();
+<<<<<<< HEAD
 //  else if (m_lecteur.getSymbole() == "tantque"){
 //      return instTantQue();
 //  }
+=======
+  else if (m_lecteur.getSymbole() == "sinonsi")
+      return instSiRiche();
+  else if (m_lecteur.getSymbole() == "repeter")
+      return instRepeter();
+  else if (m_lecteur.getSymbole() == "tantque")
+      return instTantQue();
+>>>>>>> 9f95db223775168603d4482c1b3cf4678d4597cf
   // Compléter les alternatives chaque fois qu'on rajoute une nouvelle instruction
   else erreur("Instruction incorrecte");
 }
@@ -139,51 +148,46 @@ Noeud* Interpreteur::instSi() {
   testerEtAvancer("finsi");
   return new NoeudInstSi(condition, sequence); // Et on renvoie un noeud Instruction Si
 }
-/////////////////////////
-//////////////////////////
 
-
-//Noeud* Interpreteur::instSiRiche() {    
-//    // <instSiRiche> ::= si(<expression>) <seqInst> {sinonsi (<expression>) <seqInst> } [sinon <seqInst>] finsi
-//    testerEtAvancer("si");
-//    testerEtAvancer("(");
-//    Noeud* conditionSi = expression(); // On mémorise la condition
-//    testerEtAvancer(")");
-//    Noeud* sequenceSi = seqInst();
-//    testerEtAvancer("sinonsi"); // cas de plusieurs sinonsi pas encore géré
-//    testerEtAvancer("(");
-//    Noeud* conditionSinonSi = expression();
-//    testerEtAvancer(")");
-//    Noeud* sequenceSinonSi = seqInst();
-//    testerEtAvancer("sinon");
-//    Noeud* sequenceSinon = seqInst();
-//    testerEtAvancer("finsi");
-//    return new NoeudInstSiRiche(conditionSi, sequenceSi,/*vecteur*/conditionSinonSi, /*vecteur*/sequenceSinonSi, sequenceSinon);
-//    
-//}
-
-//Noeud* Interpreteur::instRepeter() {
-//    // <instRepeter> ::= repeter <seqInst> jusqua ( <expression> )
-//    testerEtAvancer("repeter");
-//    Noeud* sequence = seqInst();
-//    testerEtAvancer("jusqa");
-//    testerEtAvancer("(");
-//    Noeud* finBoucle = expression();
-//    testerEtAvancer(")");
-//    return new NoeudInstRepeter(sequence, finBoucle);
-//}
-
-// Noeud* Interpreteur::instTantQue(){
-//// <instTantQue> ::= tantque ( <expression> ) <seqInst> fintantque
-//    testerEtAvancer("tantque");
-//    testerEtAvancer("(");
-//    Noeud* expressionTQ = expression();
-//    testerEtAvancer(")");
-//    Noeud* sequence = seqInst();
-//    testerEtAvancer("fintantque");
-//    return new NoeudInstTantQue(expressionTQ,sequence);
-//}
 
 Noeud* Interpreteur::instPour(){
     
 }
+
+Noeud* Interpreteur::instSiRiche() {    
+    // <instSiRiche> ::= si(<expression>) <seqInst> {sinonsi (<expression>) <seqInst> } [sinon <seqInst>] finsi
+    testerEtAvancer("si");
+    testerEtAvancer("(");
+    Noeud* conditionSi = expression(); // On mémorise la condition
+    testerEtAvancer(")");
+    Noeud* sequenceSi = seqInst();
+    Noeud* N = new NoeudInstSiRiche();
+    while (m_lecteur.getSymbole() == "sinonsi") {
+        testerEtAvancer("sinonsi"); // cas de plusieurs sinonsi pas encore géré
+        testerEtAvancer("(");
+        Noeud* conditionSinonSi = expression();
+        N->ajoute(conditionSinonSi);
+        testerEtAvancer(")");
+        Noeud* sequenceSinonSi = seqInst();
+        N->ajoute(sequenceSinonSi);
+    }    
+    testerEtAvancer("sinon");
+    Noeud* sequenceSinon = seqInst();
+    N->ajoute(sequenceSinon);
+    testerEtAvancer("finsi");
+    return N;
+    
+}
+
+Noeud* Interpreteur::instRepeter() {
+    // <instRepeter> ::= repeter <seqInst> jusqua ( <expression> )
+    testerEtAvancer("repeter");
+    Noeud* sequence = seqInst();
+    testerEtAvancer("jusqa");
+    testerEtAvancer("(");
+    Noeud* finBoucle = expression();
+    testerEtAvancer(")");
+    return new NoeudInstRepeter(sequence, finBoucle);
+}
+
+

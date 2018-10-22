@@ -80,12 +80,30 @@ int NoeudInstSi::executer() {
   return 0; // La valeur renvoyée ne représente rien !
 }
 
-//NoeudInstTantQue::NoeudInstTantQue(Noeud* expression, Noeud* sequence) : m_expression(expression), m_sequence(sequence){
-//}
-//
-//int NoeudInstTantQue::executer(){
-//    while(m_expression->executer()){
-//        m_sequence->executer();
-//    }
-//    return 0;
-//}
+
+
+
+NoeudInstRepeter::NoeudInstRepeter(Noeud* sequence, Noeud* condSortie) : m_condSortie(condSortie), m_sequence(sequence){
+}
+
+int NoeudInstRepeter::executer(){
+    while(m_condSortie->executer())
+        m_sequence->executer();
+    return 0;
+}
+
+NoeudInstSiRiche::NoeudInstSiRiche(){    
+}
+
+int NoeudInstSiRiche::executer(){
+    for (int i=0; i<m_vectSinonSi.size(); i++) {
+        if (m_vectSinonSi[i]->executer()) m_vectSinonSi[i+1]->executer();
+        i++;
+    }
+    return 0;
+}
+
+void NoeudInstSiRiche::ajoute(Noeud* instruction){
+    if (instruction!=nullptr) m_vectSinonSi.push_back(instruction);
+} 
+

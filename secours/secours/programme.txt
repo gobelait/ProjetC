@@ -1,0 +1,9 @@
+# Fichier de test
+# Les lignes de commentaires commencent par #
+procedure principale()
+
+a=5;
+b=0;
+repeter b=b+1; jusqua ( a==b )
+finproc
+# Commentaire Final
