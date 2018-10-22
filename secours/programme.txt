@@ -1,12 +1,9 @@
 # Fichier de test
 # Les lignes de commentaires commencent par #
 procedure principale()
-
-a=5;
-b=0;
-tantque (a>3)
- b=b+1;
- a=a-1;
-fintantque
+  i = 12+3;
+  si (i>14)
+    j=1;
+  finsi
 finproc
 # Commentaire Final
