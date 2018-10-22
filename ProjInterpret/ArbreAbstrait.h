@@ -92,7 +92,7 @@ public:
 private:
     Noeud* m_expression;
     Noeud* m_sequence;
-}
+};
     
 class NoeudInstSiRiche : public Noeud {
     //Classe pour représenter un noeud "instruction si riche"
