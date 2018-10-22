@@ -1,11 +1,13 @@
 .dep.inc
 dist/*
 nbproject/*
+Net_projetC/
 
 # Prerequisites
 *.d
 
-# Compiled Object files
+# Compiled ObjectNet_projetC/
+ files
 *.slo
 *.lo
 *.o
@@ -35,3 +37,5 @@ nbproject/*
 *.out
 *.app
 
+/Net_projetC/build/
+/Net_projetC/dist/
