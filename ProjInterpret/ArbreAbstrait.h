@@ -93,21 +93,20 @@ private:
     Noeud* m_expression;
     Noeud* m_sequence;
 };
-    
+  
 class NoeudInstSiRiche : public Noeud {
     //Classe pour représenter un noeud "instruction si riche"
     // et ses 5 fils : la condition du si initial, la seq d'inst inital, un vecteur de condition sinonsi,
     // un vecteur de seq d'inst sinonsi, une seq d'int sinon
     public :
-        NoeudInstSiRiche(Noeud* condSi, Noeud* seqSi, vector<Noeud*> vectCondSinonSi, vector<Noeud*> vectSeqSinonSi, Noeud* seqSinon);
+        NoeudInstSiRiche();
        ~NoeudInstSiRiche() {}
        int executer();
-     
+       void ajoute(Noeud* instruction);
     private:
-        Noeud* m_condSi;
-        Noeud* m_seqSi;
-        vector<Noeud*> m_vectCondSinonSi;
-        vector<Noeud*> m_vectSeqSinonSi;
+        
+        vector<Noeud*> m_vectSinonSi;
+        
         Noeud* m_seqSinon;
 };
 
