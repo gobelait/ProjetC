@@ -56,7 +56,7 @@ Noeud* Interpreteur::seqInst() {
   NoeudSeqInst* sequence = new NoeudSeqInst();
   do {
     sequence->ajoute(inst());
-  } while (m_lecteur.getSymbole() == "<VARIABLE>" || m_lecteur.getSymbole() == "si");
+  } while (m_lecteur.getSymbole() == "<VARIABLE>" || m_lecteur.getSymbole() == "si" || m_lecteur.getSymbole() == "tantque");
   // Tant que le symbole courant est un début possible d'instruction...
   // Il faut compléter cette condition chaque fois qu'on rajoute une nouvelle instruction
   return sequence;
@@ -71,6 +71,9 @@ Noeud* Interpreteur::inst() {
   }
   else if (m_lecteur.getSymbole() == "si")
     return instSi();
+//  else if (m_lecteur.getSymbole() == "tantque"){
+//      return instTantQue();
+//  }
   // Compléter les alternatives chaque fois qu'on rajoute une nouvelle instruction
   else erreur("Instruction incorrecte");
 }
@@ -140,44 +143,47 @@ Noeud* Interpreteur::instSi() {
 //////////////////////////
 
 
-Noeud* Interpreteur::instSiRiche() {    
-    // <instSiRiche> ::= si(<expression>) <seqInst> {sinonsi (<expression>) <seqInst> } [sinon <seqInst>] finsi
-    testerEtAvancer("si");
-    testerEtAvancer("(");
-    Noeud* conditionSi = expression(); // On mémorise la condition
-    testerEtAvancer(")");
-    Noeud* sequenceSi = seqInst();
-    testerEtAvancer("sinonsi"); // cas de plusieurs sinonsi pas encore géré
-    testerEtAvancer("(");
-    Noeud* conditionSinonSi = expression();
-    testerEtAvancer(")");
-    Noeud* sequenceSinonSi = seqInst();
-    testerEtAvancer("sinon");
-    Noeud* sequenceSinon = seqInst();
-    testerEtAvancer("finsi");
-    return new NoeudInstSiRiche(conditionSi, sequenceSi,/*vecteur*/conditionSinonSi, /*vecteur*/sequenceSinonSi, sequenceSinon);
+//Noeud* Interpreteur::instSiRiche() {    
+//    // <instSiRiche> ::= si(<expression>) <seqInst> {sinonsi (<expression>) <seqInst> } [sinon <seqInst>] finsi
+//    testerEtAvancer("si");
+//    testerEtAvancer("(");
+//    Noeud* conditionSi = expression(); // On mémorise la condition
+//    testerEtAvancer(")");
+//    Noeud* sequenceSi = seqInst();
+//    testerEtAvancer("sinonsi"); // cas de plusieurs sinonsi pas encore géré
+//    testerEtAvancer("(");
+//    Noeud* conditionSinonSi = expression();
+//    testerEtAvancer(")");
+//    Noeud* sequenceSinonSi = seqInst();
+//    testerEtAvancer("sinon");
+//    Noeud* sequenceSinon = seqInst();
+//    testerEtAvancer("finsi");
+//    return new NoeudInstSiRiche(conditionSi, sequenceSi,/*vecteur*/conditionSinonSi, /*vecteur*/sequenceSinonSi, sequenceSinon);
+//    
+//}
+
+//Noeud* Interpreteur::instRepeter() {
+//    // <instRepeter> ::= repeter <seqInst> jusqua ( <expression> )
+//    testerEtAvancer("repeter");
+//    Noeud* sequence = seqInst();
+//    testerEtAvancer("jusqa");
+//    testerEtAvancer("(");
+//    Noeud* finBoucle = expression();
+//    testerEtAvancer(")");
+//    return new NoeudInstRepeter(sequence, finBoucle);
+//}
+
+// Noeud* Interpreteur::instTantQue(){
+//// <instTantQue> ::= tantque ( <expression> ) <seqInst> fintantque
+//    testerEtAvancer("tantque");
+//    testerEtAvancer("(");
+//    Noeud* expressionTQ = expression();
+//    testerEtAvancer(")");
+//    Noeud* sequence = seqInst();
+//    testerEtAvancer("fintantque");
+//    return new NoeudInstTantQue(expressionTQ,sequence);
+//}
+
+Noeud* Interpreteur::instPour(){
     
 }
-
-Noeud* Interpreteur::instRepeter() {
-    // <instRepeter> ::= repeter <seqInst> jusqua ( <expression> )
-    testerEtAvancer("repeter");
-    Noeud* sequence = sequence();
-    testerEtAvancer("jusqa");
-    testerEtAvancer("(");
-    Noeud* finBoucle = expression();
-    testerEtAvancer(")");
-    return new NoeudInstRepeter(sequence, finBoucle);
-}
-
-Noeud* Interpreteur::instTantQue(){
-// <instTantQue> ::= tantque ( <expression> ) <seqInst> fintantque
-    testerEtAvancer("tantque");
-    testerEtAvancer("(");
-    Noeud* expression = expression();
-    testerEtAvancer(")");
-    Noeud* sequence = seqInst();
-    testerEtAvancer("fintantque");
-    return new NoeudInstTantQue(expression,sequence);
-}
-

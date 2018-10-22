@@ -82,42 +82,43 @@ class NoeudInstSi : public Noeud {
 };
 
 
-class NoeudInstTantQue : public Noeud{
-//Classe pour représenter un noeud "tant que"
+//class NoeudInstTantQue : public Noeud{
+////Classe pour représenter un noeud "tant que"
+//    
+//public:
+//    NoeudInstTantQue(Noeud* expression, Noeud* sequence); //Construit un "tant que" avec son expression et sa séquence d'instruction
+//    ~NoeudInstTantQue(){}; // A cause du destructeur virtuel de la classe Noeud
+//    int executer(); // Exécute l'instruction si : si condition vraie on exécute la séquence
+//    
+//private:
+//    Noeud* m_expression;
+//    Noeud* m_sequence;
+//};
     
-public:
-    NoeudInstTantQue(Noeud* expression, Noeud* sequence); //Construit un "tant que" avec son expression et sa séquence d'instruction
-    ~NoeudInstTantQue(){}; // A cause du destructeur virtuel de la classe Noeud
-    int executer(); // Exécute l'instruction si : si condition vraie on exécute la séquence
-private:
-    Noeud* m_expression;
-    Noeud* m_sequence;
-}
-    
-class NoeudInstSiRiche : public Noeud {
-    //Classe pour représenter un noeud "instruction si riche"
-    // et ses 5 fils : la condition du si initial, la seq d'inst inital, un vecteur de condition sinonsi,
-    // un vecteur de seq d'inst sinonsi, une seq d'int sinon
-    public :
-        NoeudInstSiRiche(Noeud* condSi, Noeud* seqSi, vector<Noeud*> vectCondSinonSi, vector<Noeud*> vectSeqSinonSi, Noeud* seqSinon);
-       ~NoeudInstSiRiche() {}
-       int executer();
-     
-    private:
-        Noeud* m_condSi;
-        Noeud* m_seqSi;
-        vector<Noeud*> m_vectCondSinonSi;
-        vector<Noeud*> m_vectSeqSinonSi;
-        Noeud* m_seqSinon;
-};
+//class NoeudInstSiRiche : public Noeud {
+//    //Classe pour représenter un noeud "instruction si riche"
+//    // et ses 5 fils : la condition du si initial, la seq d'inst inital, un vecteur de condition sinonsi,
+//    // un vecteur de seq d'inst sinonsi, une seq d'int sinon
+//    public :
+//        NoeudInstSiRiche(Noeud* condSi, Noeud* seqSi, /*vector<Noeud*>*/ Noeud* vectCondSinonSi, /*vector<Noeud*>*/ Noeud* vectSeqSinonSi, Noeud* seqSinon);
+//       ~NoeudInstSiRiche() {}
+//       int executer();
+//     
+//    private:
+//        Noeud* m_condSi;
+//        Noeud* m_seqSi;
+//        vector<Noeud*> m_vectCondSinonSi;
+//        vector<Noeud*> m_vectSeqSinonSi;
+//        Noeud* m_seqSinon;
+//};
 
 class NoeudInstRepeter : public Noeud {
     //Classe pour représenter un noeud "instruction si riche"
     // et ses 2 fils: sequence a repeter et condition de sortie de boucle
     public:
         NoeudInstRepeter(Noeud* sequence, Noeud* condSortie);
-       ~NoeudInstRepeter() {}
-       int executer();
+       ~NoeudInstRepeter() {};
+       int executer(){};
        
     private:
         Noeud* m_sequence;
