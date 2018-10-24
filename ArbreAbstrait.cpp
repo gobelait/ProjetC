@@ -67,18 +67,18 @@ int NoeudOperateurBinaire::executer() {
   return valeur; // On retourne la valeur calculée
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// NoeudInstSi
-////////////////////////////////////////////////////////////////////////////////
-
-NoeudInstSi::NoeudInstSi(Noeud* condition, Noeud* sequence)
-: m_condition(condition), m_sequence(sequence) {
-}
-
-int NoeudInstSi::executer() {
-  if (m_condition->executer()) m_sequence->executer();
-  return 0; // La valeur renvoyée ne représente rien !
-}
+//////////////////////////////////////////////////////////////////////////////////
+//// NoeudInstSi
+//////////////////////////////////////////////////////////////////////////////////
+//
+//NoeudInstSi::NoeudInstSi(Noeud* condition, Noeud* sequence)
+//: m_condition(condition), m_sequence(sequence) {
+//}
+//
+//int NoeudInstSi::executer() {
+//  if (m_condition->executer()) m_sequence->executer();
+//  return 0; // La valeur renvoyée ne représente rien !
+//}
 
 NoeudInstTantQue::NoeudInstTantQue(Noeud* expression, Noeud* sequence) : m_expression(expression), m_sequence(sequence){
 }
@@ -107,13 +107,36 @@ NoeudInstSiRiche::NoeudInstSiRiche(){
 }
 
 int NoeudInstSiRiche::executer(){
-    for (int i=0; i<m_vectSinonSi.size(); i++) {
-        if (m_vectSinonSi[i]->executer()) m_vectSinonSi[i+1]->executer();
-        i++;
+    bool siEffectue=false;
+    for (int i=0; i<m_vectSiRiche.size(); i+=2) {
+        if (m_vectSiRiche[i]->executer() && !siEffectue){
+           m_vectSiRiche[i+1]->executer();
+           siEffectue = true;
+        }
     }
     return 0;
 }
 
 void NoeudInstSiRiche::ajoute(Noeud* instruction){
-    if (instruction!=nullptr) m_vectSinonSi.push_back(instruction);
-} 
+    if (instruction!=nullptr) m_vectSiRiche.push_back(instruction);
+}
+
+int NoeudInstPour::executer(){
+    for(m_vecteurPour[0]->executer(); m_vecteurPour[1]->executer(); m_vecteurPour[2]->executer()){
+        m_vecteurPour[3]->executer();
+    }
+    return 0;
+}
+
+void NoeudInstPour::ajoute(Noeud* instruction){
+    if (instruction!=nullptr) m_vecteurPour.push_back(instruction);
+}
+
+int NoeudInstEcrire::executer(){
+
+    return 0;
+}
+
+void NoeudInstEcrire::ajoute(Noeud* instruction){
+    if (instruction!=nullptr) m_vecteurEcrire.push_back(instruction);
+}

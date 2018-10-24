@@ -4,6 +4,9 @@ procedure principale()
 
 a=5;
 b=0;
-repeter b=b+1; jusqua ( a==b )
+pour (;i<5;)
+a=a+1;
+i=i+1;
+finpour
 finproc
 # Commentaire Final

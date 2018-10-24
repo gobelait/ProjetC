@@ -67,19 +67,19 @@ class NoeudOperateurBinaire : public Noeud {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-class NoeudInstSi : public Noeud {
-// Classe pour représenter un noeud "instruction si"
-//  et ses 2 fils : la condition du si et la séquence d'instruction associée
-  public:
-    NoeudInstSi(Noeud* condition, Noeud* sequence);
-     // Construit une "instruction si" avec sa condition et sa séquence d'instruction
-   ~NoeudInstSi() {} // A cause du destructeur virtuel de la classe Noeud
-    int executer();  // Exécute l'instruction si : si condition vraie on exécute la séquence
-
-  private:
-    Noeud*  m_condition;
-    Noeud*  m_sequence;
-};
+//class NoeudInstSi : public Noeud {
+//// Classe pour représenter un noeud "instruction si"
+////  et ses 2 fils : la condition du si et la séquence d'instruction associée
+//  public:
+//    NoeudInstSi(Noeud* condition, Noeud* sequence);
+//     // Construit une "instruction si" avec sa condition et sa séquence d'instruction
+//   ~NoeudInstSi() {} // A cause du destructeur virtuel de la classe Noeud
+//    int executer();  // Exécute l'instruction si : si condition vraie on exécute la séquence
+//
+//  private:
+//    Noeud*  m_condition;
+//    Noeud*  m_sequence;
+//};
 
 class NoeudInstTantQue : public Noeud{
 //Classe pour représenter un noeud "tant que"
@@ -106,9 +106,7 @@ class NoeudInstSiRiche : public Noeud {
        void ajoute(Noeud* instruction);
     private:
         
-        vector<Noeud*> m_vectSinonSi;
-        
-        Noeud* m_seqSinon;
+        vector<Noeud*> m_vectSiRiche;
 };
 
 
@@ -118,11 +116,39 @@ class NoeudInstRepeter : public Noeud {
     public:
         NoeudInstRepeter(Noeud* sequence, Noeud* condSortie);
        ~NoeudInstRepeter() {};
-       int executer();
+        int executer();
        
     private:
         Noeud* m_sequence;
         Noeud* m_condSortie;
+};
+
+class NoeudInstPour : public Noeud{
+    //Classe pour représenter un noeud "instruction pour"
+    // et ses fils: affectation, expression, affectation et seqInst
+    public:
+        NoeudInstPour(){};
+       ~NoeudInstPour(){};
+        void ajoute(Noeud* instruction);
+        int executer();
+       
+    private:
+        vector<Noeud*> m_vecteurPour;
+};
+
+class NoeudInstEcrire : public Noeud{
+    //Classe pour représenter un noeud "instruction écrire"
+    
+    public:
+        NoeudInstEcrire(){};
+       ~NoeudInstEcrire(){};
+       void ajoute(Noeud* noeud);
+       int executer();
+       
+    private:
+        vector<Noeud*> m_vecteurEcrire;
+    
+    
 };
 
 #endif /* ARBREABSTRAIT_H */
