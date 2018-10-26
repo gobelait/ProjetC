@@ -254,9 +254,9 @@ Noeud* Interpreteur::instLire(){
     testerEtAvancer("(");
     Noeud* n = new NoeudInstLire;
     do{
-        if (m_lecteur="<VARIABLE>"){
-            n->ajoute(expression());
-        }
+        tester("<VARIABLE>");
+        n->ajoute(m_table.chercheAjoute(m_lecteur.getSymbole()));
+        m_lecteur.avancer();
     }while(m_lecteur.getSymbole() == ",");
     testerEtAvancer(")");
     return n;
