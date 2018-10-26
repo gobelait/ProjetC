@@ -3,6 +3,7 @@
 #include "Symbole.h"
 #include "SymboleValue.h"
 #include "Exceptions.h"
+#include <typeinfo>
 
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudSeqInst
@@ -122,21 +123,45 @@ void NoeudInstSiRiche::ajoute(Noeud* instruction){
 }
 
 int NoeudInstPour::executer(){
-    for(m_vecteurPour[0]->executer(); m_vecteurPour[1]->executer(); m_vecteurPour[2]->executer()){
-        m_vecteurPour[3]->executer();
+//    (m_vecteurPour[0]!=nullptr)?: m_vecteurPour[0]->executer();
+//    while(m_vecteurPour[1]->executer()){
+//        m_vecteurPour[3]->executer();
+//        (m_vecteurPour[2] != nullptr)?:m_vecteurPour[2]->executer();
+//    }
+    for((m_affectation1==nullptr)?: m_affectation1->executer(); m_expression1->executer(); (m_affectation2 == nullptr)?:m_affectation2->executer()){
+        m_seq->executer();
     }
     return 0;
 }
 
-void NoeudInstPour::ajoute(Noeud* instruction){
-    if (instruction!=nullptr) m_vecteurPour.push_back(instruction);
-}
 
 int NoeudInstEcrire::executer(){
-
+    for(Noeud* element : m_vecteurEcrire){
+        if ( (typeid(*element)==typeid(SymboleValue) && *((SymboleValue*)element) == "<CHAINE>")){
+            string s = ((SymboleValue*)element)->getChaine();
+            s.pop_back();
+            s.erase(0,1);            
+            cout<<s;
+        }
+        else{
+            cout<<element->executer();
+        }
+    }
+    
     return 0;
 }
 
 void NoeudInstEcrire::ajoute(Noeud* instruction){
     if (instruction!=nullptr) m_vecteurEcrire.push_back(instruction);
+}
+
+int NoeudInstLire::executer(){
+    for(Noeud* element : m_vecteurLire){
+        cin<<((SymboleValue*)*element)->getChaine();
+    }
+    return 0;
+}
+
+void NoeudInstLire::ajoute(Noeud* instruction){
+    if (instruction!=nullptr) m_vecteurLire.push_back(instruction);
 }

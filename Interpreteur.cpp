@@ -56,7 +56,7 @@ Noeud* Interpreteur::seqInst() {
   NoeudSeqInst* sequence = new NoeudSeqInst();
   do {
     sequence->ajoute(inst());
-  } while (m_lecteur.getSymbole() == "<VARIABLE>" || m_lecteur.getSymbole() == "si" || m_lecteur.getSymbole() == "tantque" || m_lecteur.getSymbole() == "repeter" || m_lecteur.getSymbole() == "pour");
+  } while (m_lecteur.getSymbole() == "<VARIABLE>" || m_lecteur.getSymbole() == "si" || m_lecteur.getSymbole() == "tantque" || m_lecteur.getSymbole() == "repeter" || m_lecteur.getSymbole() == "pour" || m_lecteur.getSymbole() == "ecrire" || m_lecteur.getSymbole() == "lire");
   // Tant que le symbole courant est un début possible d'instruction...
   // Il faut compléter cette condition chaque fois qu'on rajoute une nouvelle instruction
   return sequence;
@@ -81,6 +81,10 @@ Noeud* Interpreteur::inst() {
       return instTantQue();
   else if (m_lecteur.getSymbole() == "pour")
       return instPour();
+  else if (m_lecteur.getSymbole() == "ecrire")
+      return instEcrire();
+  else if (m_lecteur.getSymbole() == "lire")
+      return instLire();
   // Compléter les alternatives chaque fois qu'on rajoute une nouvelle instruction
   else erreur("Instruction incorrecte");
 }
@@ -202,50 +206,58 @@ Noeud* Interpreteur::instRepeter() {
 }
 
 Noeud* Interpreteur::instPour(){
-    Noeud* n = new NoeudInstPour();
+    
     testerEtAvancer("pour");
     testerEtAvancer("(");
+    
+    Noeud* affectation1 = nullptr;
     if (m_lecteur.getSymbole() == "<VARIABLE>") {
-        Noeud* affect = affectation();
-        n->ajoute(affect);
-        testerEtAvancer(";");
+        affectation1 = affectation();
     }
-    else{
-        Noeud* affect;
-        n->ajoute(affect);
-        testerEtAvancer(";");
-    }
-    Noeud* expressionPour = expression();
-    n->ajoute(expressionPour);
+    
     testerEtAvancer(";");
+    Noeud* expression1 = expression();
+    testerEtAvancer(";");
+    
+    Noeud* affectation2 = nullptr;
     if (m_lecteur.getSymbole() == "<VARIABLE>") {
-        Noeud* affect2 = affectation();
-        n->ajoute(affect2);
+        affectation2 = affectation();
     }
-    else{
-        Noeud* affect2;
-        n->ajoute(affect2);
-    }
+
     testerEtAvancer(")");
-    Noeud* sequence = seqInst();
-    n->ajoute(sequence);
+    Noeud* seq = seqInst();
     testerEtAvancer("finpour");
+    Noeud* n = new NoeudInstPour(affectation1,expression1,affectation2,seq);
     return n;
 }
 
 Noeud* Interpreteur::instEcrire(){
     testerEtAvancer("ecrire");
-    testerEtAvancer("(");
+    tester("(");
     Noeud* n = new NoeudInstEcrire();
-//    if(m_lecteur.getSymbole() == facteur()){
-//        Noeud* expressionEcrire = expression();
-//    }
-//    else if(m_lecteur.getSymbole() == "<CHAINE>"){
-////        Noeud* chaine = 
-//        cout<<m_lecteur.getSymbole();
-//    }
-//    
-//    while (){
-//        testerEtAvancer(",");
-//    }
+    do{
+        m_lecteur.avancer();
+        if(m_lecteur.getSymbole() == "<CHAINE>"){
+            n->ajoute(m_table.chercheAjoute(m_lecteur.getSymbole()));
+            m_lecteur.avancer();
+        }
+        else{
+            n->ajoute(expression());
+        }
+    }while(m_lecteur.getSymbole() == ",");
+    testerEtAvancer(")");
+    return n;
+}
+
+Noeud* Interpreteur::instLire(){
+    testerEtAvancer("lire");
+    testerEtAvancer("(");
+    Noeud* n = new NoeudInstLire;
+    do{
+        if (m_lecteur="<VARIABLE>"){
+            n->ajoute(expression());
+        }
+    }while(m_lecteur.getSymbole() == ",");
+    testerEtAvancer(")");
+    return n;
 }

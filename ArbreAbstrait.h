@@ -127,13 +127,15 @@ class NoeudInstPour : public Noeud{
     //Classe pour représenter un noeud "instruction pour"
     // et ses fils: affectation, expression, affectation et seqInst
     public:
-        NoeudInstPour(){};
+        NoeudInstPour(Noeud* affectation1, Noeud* expression1, Noeud* affectation2, Noeud* seq): m_affectation1(affectation1), m_expression1(expression1), m_affectation2(affectation2), m_seq(seq){};
        ~NoeudInstPour(){};
-        void ajoute(Noeud* instruction);
         int executer();
        
     private:
-        vector<Noeud*> m_vecteurPour;
+        Noeud* m_affectation1;
+        Noeud* m_expression1;
+        Noeud* m_affectation2;
+        Noeud* m_seq;
 };
 
 class NoeudInstEcrire : public Noeud{
@@ -147,7 +149,21 @@ class NoeudInstEcrire : public Noeud{
        
     private:
         vector<Noeud*> m_vecteurEcrire;
+
     
+    
+};
+
+class NoeudInstLire : public Noeud{
+    //Classe pour représenter un noeaud "instruction écrire"
+    public:
+        NoeudInstLire(){};
+       ~NoeudInstLire(){};
+       void ajoute(Noeud* noeud);
+       int executer();
+       
+    private:
+        vector<Noeud*> m_vecteurLire;    
     
 };
 
