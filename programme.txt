@@ -4,7 +4,7 @@ procedure principale()
 
 a=0;
 b=0;
-
-lire(a)
+a+
+a=a+12;
 finproc
 # Commentaire Final

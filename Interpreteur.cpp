@@ -1,6 +1,8 @@
 #include "Interpreteur.h"
 #include <stdlib.h>
 #include <iostream>
+#include <typeinfo>
+
 using namespace std;
 
 Interpreteur::Interpreteur(ifstream & fichier) :
@@ -8,7 +10,12 @@ m_lecteur(fichier), m_table(), m_arbre(nullptr) {
 }
 
 void Interpreteur::analyse() {
-  m_arbre = programme(); // on lance l'analyse de la première règle
+    m_erreur = 0;
+    m_arbre = programme(); // on lance l'analyse de la première règle
+    if(m_erreur>0){
+        m_arbre = nullptr;
+        exit(EXIT_FAILURE);
+    }
 }
 
 void Interpreteur::tester(const string & symboleAttendu) const throw (SyntaxeException) {
@@ -64,7 +71,8 @@ Noeud* Interpreteur::seqInst() {
 
 Noeud* Interpreteur::inst() {
   // <inst> ::= <affectation>  ; | <instSiRiche> || <instTantQue> || <instRepeter> || <>
-  if (m_lecteur.getSymbole() == "<VARIABLE>") {
+    try{
+   if (m_lecteur.getSymbole() == "<VARIABLE>") {
     Noeud *affect = affectation();
     testerEtAvancer(";");
     return affect;
@@ -87,12 +95,20 @@ Noeud* Interpreteur::inst() {
       return instLire();
   // Compléter les alternatives chaque fois qu'on rajoute une nouvelle instruction
   else erreur("Instruction incorrecte");
+
+    }catch(InterpreteurException & e){
+        cout << e.what() << endl;
+        m_erreur++;
+        do{
+            m_lecteur.avancer();
+        }while(!(m_lecteur.getSymbole() == "<VARIABLE>" || m_lecteur.getSymbole() == "si" || m_lecteur.getSymbole() == "sinonsi" || m_lecteur.getSymbole() == "repeter" || m_lecteur.getSymbole() == "tantque" || m_lecteur.getSymbole() == "pour" || m_lecteur.getSymbole() == "ecrire" || m_lecteur.getSymbole() == "lire"));
+    }
 }
 
 Noeud* Interpreteur::affectation() {
   // <affectation> ::= <variable> = <expression> 
   tester("<VARIABLE>");
-  Noeud* var = m_table.chercheAjoute(m_lecteur.getSymbole()); // La variable est ajoutée à la table eton la mémorise
+  Noeud* var = m_table.chercheAjoute(m_lecteur.getSymbole()); // La variable est ajoutée à la table et on la mémorise
   m_lecteur.avancer();
   testerEtAvancer("=");
   Noeud* exp = expression();             // On mémorise l'expression trouvée
@@ -260,4 +276,17 @@ Noeud* Interpreteur::instLire(){
     }while(m_lecteur.getSymbole() == ",");
     testerEtAvancer(")");
     return n;
+}
+
+
+void Interpreteur::traduitEnCPP(ostream& cout, unsigned int indentation) const{
+    cout << setw(4*indentation) << "" << "int main() {" << endl; //Début d'un programme C++
+    for (int i=0; i < m_table.getTaille(); i++){
+        if (m_table[i] == "<VARIABLE>"){
+            cout <<setw((4*indentation)+1)<< "" <<"int " << m_table[i].getChaine() << ";" << endl; 
+        }
+    }
+    getArbre()->traduitEnCPP(cout,(4*indentation)+1); // lance l'opératuib traduitEnCpp sur la racine
+    cout << endl << setw((4*indentation)+1) << "" << "return 0;" << endl;
+    cout << setw(4*indentation) << "}" << endl; //Fin d'un programme C++
 }

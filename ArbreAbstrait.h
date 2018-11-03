@@ -20,6 +20,7 @@ class Noeud {
     virtual int  executer() =0 ; // Méthode pure (non implémentée) qui rend la classe abstraite
     virtual void ajoute(Noeud* instruction) { throw OperationInterditeException(); }
     virtual ~Noeud() {} // Présence d'un destructeur virtuel conseillée dans les classes abstraites
+    virtual void traduitEnCPP(ostream & cout, unsigned int indentation) const{};
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +32,8 @@ class NoeudSeqInst : public Noeud {
     ~NoeudSeqInst() {} // A cause du destructeur virtuel de la classe Noeud
     int executer();    // Exécute chaque instruction de la séquence
     void ajoute(Noeud* instruction);  // Ajoute une instruction à la séquence
-
+    void traduitEnCPP(ostream & cout, unsigned int indentation)const;
+        
   private:
     vector<Noeud *> m_instructions; // pour stocker les instructions de la séquence
 };
@@ -44,6 +46,7 @@ class NoeudAffectation : public Noeud {
      NoeudAffectation(Noeud* variable, Noeud* expression); // construit une affectation
     ~NoeudAffectation() {} // A cause du destructeur virtuel de la classe Noeud
     int executer();        // Exécute (évalue) l'expression et affecte sa valeur à la variable
+    void traduitEnCPP(ostream & cout, unsigned int indentation)const;
 
   private:
     Noeud* m_variable;
@@ -59,7 +62,8 @@ class NoeudOperateurBinaire : public Noeud {
     // Construit une opération binaire : operandeGauche operateur OperandeDroit
    ~NoeudOperateurBinaire() {} // A cause du destructeur virtuel de la classe Noeud
     int executer();            // Exécute (évalue) l'opération binaire)
-
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+    
   private:
     Symbole m_operateur;
     Noeud*  m_operandeGauche;
@@ -84,14 +88,15 @@ class NoeudOperateurBinaire : public Noeud {
 class NoeudInstTantQue : public Noeud{
 //Classe pour représenter un noeud "tant que"
     
-public:
-    NoeudInstTantQue(Noeud* expression, Noeud* sequence); //Construit un "tant que" avec son expression et sa séquence d'instruction
-    ~NoeudInstTantQue(){}; // A cause du destructeur virtuel de la classe Noeud
-    int executer(); // Exécute l'instruction si : si condition vraie on exécute la séquence
+    public:
+         NoeudInstTantQue(Noeud* expression, Noeud* sequence); //Construit un "tant que" avec son expression et sa séquence d'instruction
+         ~NoeudInstTantQue(){}; // A cause du destructeur virtuel de la classe Noeud
+        int executer(); // Exécute l'instruction si : si condition vraie on exécute la séquence
+        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
     
-private:
-    Noeud* m_expression;
-    Noeud* m_sequence;
+    private:
+        Noeud* m_expression;
+        Noeud* m_sequence;
 };
 
   
@@ -104,6 +109,7 @@ class NoeudInstSiRiche : public Noeud {
        ~NoeudInstSiRiche() {}
        int executer();
        void ajoute(Noeud* instruction);
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
     private:
         
         vector<Noeud*> m_vectSiRiche;
@@ -117,6 +123,7 @@ class NoeudInstRepeter : public Noeud {
         NoeudInstRepeter(Noeud* sequence, Noeud* condSortie);
        ~NoeudInstRepeter() {};
         int executer();
+        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
        
     private:
         Noeud* m_sequence;
@@ -130,6 +137,7 @@ class NoeudInstPour : public Noeud{
         NoeudInstPour(Noeud* affectation1, Noeud* expression1, Noeud* affectation2, Noeud* seq): m_affectation1(affectation1), m_expression1(expression1), m_affectation2(affectation2), m_seq(seq){};
        ~NoeudInstPour(){};
         int executer();
+        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
        
     private:
         Noeud* m_affectation1;
@@ -146,6 +154,7 @@ class NoeudInstEcrire : public Noeud{
        ~NoeudInstEcrire(){};
        void ajoute(Noeud* noeud);
        int executer();
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
        
     private:
         vector<Noeud*> m_vecteurEcrire;
@@ -161,7 +170,8 @@ class NoeudInstLire : public Noeud{
        ~NoeudInstLire(){};
        void ajoute(Noeud* noeud);
        int executer();
-       
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        
     private:
         vector<Noeud*> m_vecteurLire;    
     
