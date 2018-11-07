@@ -177,4 +177,16 @@ class NoeudInstLire : public Noeud{
     
 };
 
-#endif /* ARBREABSTRAIT_H */
+class NoeudInstSelon : public Noeud{
+    //Classe pour représenter un noeud "instruction selon"
+    public:
+        NoeudInstSelon(Noeud* variable);
+        ~NoeudInstSelon(){};
+        void ajoute(Noeud* noeud);
+        int executer();
+        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        
+    private:
+        vector<Noeud*> m_vecteurSelon;
+        Noeud* m_variable;
+};    

@@ -32,9 +32,18 @@ private:
     Noeud*  seqInst();	   //     <seqInst> ::= <inst> { <inst> }
     Noeud*  inst();	       //        <inst> ::= <affectation> ; | <instSi>
     Noeud*  affectation(); // <affectation> ::= <variable> = <expression> 
-    Noeud*  expression();  //  <expression> ::= <facteur> { <opBinaire> <facteur> }
-    Noeud*  facteur();     //     <facteur> ::= <entier>  |  <variable>  |  - <facteur>  | non <facteur> | ( <expression> )
+    //Noeud*  expression();  //  <expression> ::= <facteur> { <opBinaire> <facteur> }
+    //Noeud*  facteur();     //     <facteur> ::= <entier>  |  <variable>  |  - <facteur>  | non <facteur> | ( <expression> )
                            //   <opBinaire> ::= + | - | *  | / | < | > | <= | >= | == | != | et | ou
+ 
+    Noeud* expression(); //<expression> ::= <terme> { + <terme> | - <terme> }
+    Noeud* terme(); // <terme> ::= <facteur> {* <facteur> | / <facteur>}
+    Noeud* facteur(); // <facteur> ::= <entier> | <variable> | - <expBool> | non <expBool> | ( <expBool> ) 
+    Noeud* expBool(); // <expBool>  ::= <relationET> { ou <relationEt> }
+    Noeud* relationEt(); // <relationEt>  ::= <relation> { et <relation> }
+    Noeud* relation(); // <relation> ::= <expression> { <opRel> <expression> }
+                    // <opRel>  ::= == | != | < | <= | > | >=
+    
 //    Noeud*  instSi();      //      <instSi> ::= si ( <expression> ) <seqInst> finsi
     Noeud*  instTantQue();
     Noeud*  instSiRiche(); 
@@ -42,6 +51,7 @@ private:
     Noeud*  instPour();
     Noeud*  instEcrire();
     Noeud*  instLire();
+    Noeud*  instSelon();
     
     int m_erreur;
     

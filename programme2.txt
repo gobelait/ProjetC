@@ -4,7 +4,8 @@ procedure principale()
 
 a=0;
 b=0;
-a+
 a=a+12;
+ecrire("oui")
+lire(b)
 finproc
 # Commentaire Final
