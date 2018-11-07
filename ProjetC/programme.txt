@@ -1,0 +1,15 @@
+# Fichier de test
+# Les lignes de commentaires commencent par #
+procedure principale()
+
+ecrire((4+10*2)/2-10)
+a=2;
+b=15;
+si(a == 2 et b == 15)
+ecrire("ahah")
+sinon
+ecrire("bouuuh")
+finsi
+
+finproc
+# Commentaire Final

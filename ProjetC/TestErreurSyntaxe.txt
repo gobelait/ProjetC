@@ -1,0 +1,7 @@
+# Fichier de test instruction repeter
+#Resultat attendu:
+#erreur il manque ";"
+#erreur il manque "finproc"
+procedure principale()
+
+a=54

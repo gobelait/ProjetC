@@ -1,0 +1,12 @@
+# Fichier de test
+# Les lignes de commentaires commencent par #
+procedure principale()
+
+a=2;
+b=0;
+si(a == 2 ou b == 15)
+ecrire("vrai")
+finsi
+
+finproc
+# Commentaire Final

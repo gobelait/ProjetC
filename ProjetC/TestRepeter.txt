@@ -1,0 +1,12 @@
+# Fichier de test instruction repeter
+#Resultat attendu :
+#a=3
+#b=3
+procedure principale()
+
+a=0;
+b=3;
+
+repeter a=a+1; jusqua (a==b)
+
+finproc

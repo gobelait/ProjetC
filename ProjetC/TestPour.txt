@@ -1,0 +1,11 @@
+# Fichier de test instruction pour
+#Resultat attendu :
+#a=3
+#b=2
+procedure principale()
+a=5;
+pour(i=0; i<10; i=i+1)
+    a=a+1;
+finpour
+
+finproc

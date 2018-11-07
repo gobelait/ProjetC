@@ -1,0 +1,14 @@
+# Fichier de test instruction si riche, entré dans sinon
+#Resultat attendu :
+#écriture de "sinon"
+procedure principale()
+a=0;
+b=6;
+si (a==b)
+    ecrire("si")
+sinonsi (a>b)
+    ecrire("sinonsi")
+sinon
+    ecrire("sinon")
+finsi
+finproc

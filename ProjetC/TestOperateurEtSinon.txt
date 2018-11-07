@@ -1,0 +1,17 @@
+# Fichier de test
+# Les lignes de commentaires commencent par #
+#Résultat attendu : 
+#ecrire "sinon"
+
+procedure principale()
+a=2;
+b=0;
+
+si(a == 2 et b == 15)
+ecrire("si")
+sinon
+ecrire("sinon")
+finsi
+
+finproc
+# Commentaire Final

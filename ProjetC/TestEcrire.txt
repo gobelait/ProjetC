@@ -1,9 +1,9 @@
 # Fichier de test instruction ecrire
-#Resultat attendu :
+#Resultat attendu : ceci est un test5
 
 procedure principale()
 a=2;
 b=3;
-ecrire("ceci est un test", a+b);
+ecrire("ceci est un test", a+b)
 
 finproc

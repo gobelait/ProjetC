@@ -1,0 +1,10 @@
+# Fichier de test
+# Les lignes de commentaires commencent par #
+#Résultat attendu : 
+#ecrire "6"
+
+procedure principale()
+ecrire((4+10*2)/2-6)
+
+finproc
+# Commentaire Final
