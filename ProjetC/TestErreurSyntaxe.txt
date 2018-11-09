@@ -5,3 +5,9 @@
 procedure principale()
 
 a=54
+
+j = 5;
+
+b = 18
+
+finproc

@@ -1,9 +1,11 @@
 # Fichier de test instruction ecrire
 # Resultat attendu :
+# les valeurs a, b et c ont été changées apres le lire
+
 procedure principale()
-a=2;
-b=1;
-c=0;
+a=1;
+b=2;
+c=3;
 lire(a,b,c)
 
 finproc
