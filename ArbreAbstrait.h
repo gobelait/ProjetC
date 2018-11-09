@@ -106,9 +106,9 @@ class NoeudInstSiRiche : public Noeud {
     // un vecteur de seq d'inst sinonsi, une seq d'int sinon
     public :
         NoeudInstSiRiche();
-       ~NoeudInstSiRiche() {}
+       ~NoeudInstSiRiche() {}// A cause du destructeur virtuel de la classe Noeud
        int executer();
-       void ajoute(Noeud* instruction);
+       void ajoute(Noeud* instruction);// Ajoute une instruction à la séquence
        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
     private:
         
@@ -121,7 +121,7 @@ class NoeudInstRepeter : public Noeud {
     // et ses 2 fils: sequence a repeter et condition de sortie de boucle
     public:
         NoeudInstRepeter(Noeud* sequence, Noeud* condSortie);
-       ~NoeudInstRepeter() {};
+       ~NoeudInstRepeter() {};// A cause du destructeur virtuel de la classe Noeud
         int executer();
         void traduitEnCPP(ostream & cout, unsigned int indentation) const;
        
@@ -135,7 +135,7 @@ class NoeudInstPour : public Noeud{
     // et ses fils: affectation, expression, affectation et seqInst
     public:
         NoeudInstPour(Noeud* affectation1, Noeud* expression1, Noeud* affectation2, Noeud* seq): m_affectation1(affectation1), m_expression1(expression1), m_affectation2(affectation2), m_seq(seq){};
-       ~NoeudInstPour(){};
+       ~NoeudInstPour(){};// A cause du destructeur virtuel de la classe Noeud
         int executer();
         void traduitEnCPP(ostream & cout, unsigned int indentation) const;
        
@@ -151,8 +151,8 @@ class NoeudInstEcrire : public Noeud{
     
     public:
         NoeudInstEcrire(){};
-       ~NoeudInstEcrire(){};
-       void ajoute(Noeud* noeud);
+       ~NoeudInstEcrire(){};// A cause du destructeur virtuel de la classe Noeud
+       void ajoute(Noeud* noeud);// Ajoute une instruction à la séquence
        int executer();
        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
        
@@ -167,8 +167,8 @@ class NoeudInstLire : public Noeud{
     //Classe pour représenter un noeaud "instruction écrire"
     public:
         NoeudInstLire(){};
-       ~NoeudInstLire(){};
-       void ajoute(Noeud* noeud);
+       ~NoeudInstLire(){};// A cause du destructeur virtuel de la classe Noeud
+       void ajoute(Noeud* noeud);// Ajoute une instruction à la séquence
        int executer();
        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
         
@@ -177,16 +177,107 @@ class NoeudInstLire : public Noeud{
     
 };
 
-class NoeudInstSelon : public Noeud{
-    //Classe pour représenter un noeud "instruction selon"
+class NoeudIncr : public Noeud{
+    //Classe pour représenter un noeaud "instruction écrire"
     public:
-        NoeudInstSelon(Noeud* variable);
-        ~NoeudInstSelon(){};
-        void ajoute(Noeud* noeud);
-        int executer();
-        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        NoeudIncr(Noeud* variable);
+       ~NoeudIncr(){};// A cause du destructeur virtuel de la classe Noeud
+       int executer();
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
         
     private:
-        vector<Noeud*> m_vecteurSelon;
-        Noeud* m_variable;
-};    
+        Noeud* m_variable;    
+    
+};
+
+class NoeudDecr : public Noeud{
+    //Classe pour représenter un noeaud "instruction écrire"
+    public:
+        NoeudDecr(Noeud* variable);
+       ~NoeudDecr(){};// A cause du destructeur virtuel de la classe Noeud
+       int executer();
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        
+    private:
+        Noeud* m_variable;    
+    
+};
+
+
+        
+class NoeudAffectationDirecteSoustraction : public Noeud{
+    //Classe pour représenter un noeaud "instruction écrire"
+    public:
+        NoeudAffectationDirecteSoustraction(Noeud* variable, Noeud* operande);
+       ~NoeudAffectationDirecteSoustraction(){};// A cause du destructeur virtuel de la classe Noeud
+       int executer();
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        
+    private:
+        Noeud* m_variable;    
+        Noeud* m_operande;
+    
+};
+
+
+
+
+class NoeudAffectationDirecteAddition : public Noeud{
+    //Classe pour représenter un noeaud "instruction écrire"
+    public:
+        NoeudAffectationDirecteAddition(Noeud* variable, Noeud* operande);
+       ~NoeudAffectationDirecteAddition(){};// A cause du destructeur virtuel de la classe Noeud
+       int executer();
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        
+    private:
+        Noeud* m_variable;    
+        Noeud* m_operande;
+    
+};
+
+
+class NoeudAffectationDirecteMultiplication : public Noeud{
+    //Classe pour représenter un noeaud "instruction écrire"
+    public:
+        NoeudAffectationDirecteMultiplication(Noeud* variable, Noeud* operande);
+       ~NoeudAffectationDirecteMultiplication(){};// A cause du destructeur virtuel de la classe Noeud
+       int executer();
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        
+    private:
+        Noeud* m_variable;    
+        Noeud* m_operande;
+    
+};  
+
+class NoeudAffectationDirecteDivision : public Noeud{
+    //Classe pour représenter un noeaud "instruction écrire"
+    public:
+        NoeudAffectationDirecteDivision(Noeud* variable, Noeud* operande);
+       ~NoeudAffectationDirecteDivision(){};// A cause du destructeur virtuel de la classe Noeud
+       int executer();
+       void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+        
+    private:
+        Noeud* m_variable;    
+        Noeud* m_operande;
+    
+}; 
+//class NoeudInstSelon : public Noeud{
+//    //Classe pour représenter un noeud "instruction selon"
+//    public:
+//        NoeudInstSelon(Noeud* variable);
+//        ~NoeudInstSelon(){};
+//        void ajoute(Noeud* noeud);
+//        int executer();
+//        void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+//        
+//    private:
+//        vector<Noeud*> m_vecteurSelon;
+//        Noeud* m_variable;
+//};    
+
+
+
+#endif

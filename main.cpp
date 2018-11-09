@@ -31,5 +31,10 @@ int main(int argc, char* argv[]) {
   } catch (InterpreteurException & e) {
     cout << e.what() << endl;
   }
+  
+  
+  int aa = 100;
+  aa*=5;
+  
   return 0;
 }

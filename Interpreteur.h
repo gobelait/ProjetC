@@ -44,19 +44,18 @@ private:
     Noeud* relation(); // <relation> ::= <expression> { <opRel> <expression> }
                     // <opRel>  ::= == | != | < | <= | > | >=
     
-//    Noeud*  instSi();      //      <instSi> ::= si ( <expression> ) <seqInst> finsi
-    Noeud*  instTantQue();
-    Noeud*  instSiRiche(); 
-    Noeud*  instRepeter();
-    Noeud*  instPour();
-    Noeud*  instEcrire();
-    Noeud*  instLire();
-    Noeud*  instSelon();
+    Noeud*  instTantQue();  //<instTantQue> ::= tantque(<expression> )<seqInst> fintantque
+    Noeud*  instSiRiche();  //<instSiRiche> ::= si(<expression>) <seqInst> {sinonsi(<expression>) <seqInst> }[sinon <seqInst>]finsi
+    Noeud*  instRepeter();  //<instRepeter> ::= repeter <seqInst> jusqua( <expression> )
+    Noeud*  instPour();     //<instPour> ::= pour( [ <affectation> ] ; <expression> ;[ <affectation> ]) <seqInst> finpour
+    Noeud*  instEcrire();   //<instEcrire>  ::= ecrire( <expression> | <chaine> {, <expression> | <chaine> }) 
+    Noeud*  instLire();     //<instLire>    ::= lire( <variable> {, <variable> }) 
+//    Noeud*  instSelon();
     
     int m_erreur;
     
 
-    
+  
     // outils pour simplifier l'analyse syntaxique
     void tester (const string & symboleAttendu) const throw (SyntaxeException);   // Si symbole courant != symboleAttendu, on lève une exception
     void testerEtAvancer(const string & symboleAttendu) throw (SyntaxeException); // Si symbole courant != symboleAttendu, on lève une exception, sinon on avance
